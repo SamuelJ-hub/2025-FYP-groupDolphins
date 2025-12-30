@@ -31,7 +31,7 @@ def analyze_hair_amount(image, low_threshold_pct=3, high_threshold_pct=10):
     blackhat = cv2.morphologyEx(img_gray, cv2.MORPH_BLACKHAT, kernel)
 
     # 3. Threshold the black-hat image
-    _, hair_mask = cv2.threshold(blackhat, 30, 255, cv2.THRESH_BINARY)
+    _, hair_mask = cv2.threshold(blackhat, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
     # 4. Quantify hair coverage
     total_pixels = image.shape[0] * image.shape[1]
